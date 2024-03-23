@@ -17,7 +17,7 @@ export default function Form() {
   const [selectedOption, setSelectedOption] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("token");
-  const options = ["traffic", "garbage", "governmentOffice"];
+  const options = ["traffic", "water", "fire","police","pwd"];
   const navigate = useNavigate();
 
   const [imageFile, setImageFile] = useState(null); // Track image file

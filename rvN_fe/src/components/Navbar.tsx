@@ -14,7 +14,7 @@ const Navbar = () => {
     <nav className="bg-gradient-to-b from-[#67666b] to-[#f4f4f6] p-8 b-0 h-24 text-[#353538]">
       <div className="container mx-auto flex justify-between items-center">
         <div className=" font-bold flex gap-6 items-center justify-center">
-          <Link className="max-w-[60px]" to= "/"><img src={logo}/></Link>
+          {/* <Link className="max-w-[60px]" to= "/"><img src={logo}/></Link> */}
           <div><a href="https://wii.gov.in/rti#maincontent" className=" hover:text-gray-300">Laws</a></div>
           <div><a href="#" className=" hover:text-gray-300">About</a></div>
         </div>
