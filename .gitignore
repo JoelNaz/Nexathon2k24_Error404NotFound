@@ -1,8 +1,8 @@
 # .gitignore
 
 # Ignore node_modules for the backend
-/fe/frontend/node_modules
+/rvN_be/node_modules
 
 
-/be/node_modules
+/rvN_fe/node_modules
 
