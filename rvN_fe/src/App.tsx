@@ -18,7 +18,6 @@ const Maps = React.lazy(()=>import('./Pages/Maps'))
 const Charts = React.lazy(()=>import('./Pages/Charts'))
 const Report = React.lazy(()=>import('./Pages/Report'))
 const Case = React.lazy(()=>import('./Pages/Cases'))
-const UpdateData = React.lazy(()=>import('./Pages/UpdateData'))
 const Visitors = React.lazy(()=>import('./Pages/Visitor'))
 const InvestigatorDash = React.lazy(()=>import('./Pages/centraladmindash'))
 const Explore = React.lazy(()=>import('./Pages/Explore'))
@@ -64,10 +63,6 @@ const router = createBrowserRouter([
       {
         path:"cases",
         element:<Case/>
-      },
-      {
-        path:"update-data",
-        element:<UpdateData/>
       },
       {
         path:"visitors",

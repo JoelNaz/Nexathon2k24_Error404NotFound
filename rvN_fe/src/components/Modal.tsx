@@ -175,7 +175,7 @@ const ReportModal = ({
               )}
               <p className="text-sm">{description}</p>
               <div className="text-sm text-[#ea563c] font-bold">
-                {spam.toLowerCase() === "yes" ? "This report is a potential Spam" : "This report is not a potential Spam"}
+                {spam.toLowerCase() === "yes"? "This report is a potential Spam" :spam.toLowerCase() === "no"? "This report is not a potential Spam":""}
               </div>
             </div>
             <div>

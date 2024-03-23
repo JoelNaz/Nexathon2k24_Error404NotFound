@@ -44,7 +44,7 @@ const SideBar = () => {
         <MenuItem component={<NavLink to="report" />} icon={<FaHardDrive />}>Report</MenuItem>
         <MenuItem component={<NavLink to="explore" />} icon={<FaSistrix />}>Explore</MenuItem>
         {role=="localauthority" && <MenuItem component={<NavLink to="cases" />} icon={<FaHardDrive />}>Cases</MenuItem>}
-        {role=="localauthority" && <MenuItem component={<NavLink to="update-data" />} icon={<FaPen />}>Update Data</MenuItem>}
+
         {role=="localauthority" && <MenuItem component={<NavLink to="visitors" />} icon={<FaUserGroup />}>Visitors</MenuItem>}
         {role=="centeraladmin" && <MenuItem component={<NavLink to="all-cases" />} icon={<FaReceipt />}>Reported Cases</MenuItem>}
         {role=="centeraladmin" && <MenuItem component={<NavLink to="alerts" />} icon={<FaBell />}>Alerts</MenuItem>}
