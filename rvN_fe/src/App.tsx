@@ -22,6 +22,7 @@ const Visitors = React.lazy(()=>import('./Pages/Visitor'))
 const InvestigatorDash = React.lazy(()=>import('./Pages/centraladmindash'))
 const Explore = React.lazy(()=>import('./Pages/Explore'))
 const Alerts = React.lazy(()=>import('./Pages/Alerts'))
+const UserCases = React.lazy(()=>import('./Pages/UserCases'))
 const Live = React.lazy(()=>import('./Pages/LiveChat'))
 const router = createBrowserRouter([
   {
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
       {
         path:"chat/:userId",
         element:<LiveChat/>
+      },
+      {
+        path:"my-reported-cases",
+        element:<UserCases/>
       }
       
     ]
