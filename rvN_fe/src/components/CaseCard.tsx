@@ -33,6 +33,16 @@ const CaseCard = ({report}) => {
                   <div>
                     {report.description}
                   </div>
+                  <div>
+                  <img
+                    src={report.image}
+                    alt="Report Image"
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "300px",
+                      margin: "0 auto",
+                    }}/>
+                  </div>
                   </div>
                 </div>
               </div>

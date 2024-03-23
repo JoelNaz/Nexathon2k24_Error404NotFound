@@ -71,47 +71,7 @@ const ReportModal = ({
   };
 
   // Function to get MIME type from buffer data
-  const getMimeType = (buffer) => {
-    const uint = new Uint8Array(buffer.data);
-    let bytes = [];
-    uint.forEach((byte) => {
-      bytes.push(byte.toString(16));
-    });
-    const hex = bytes.join("").toUpperCase();
-
-    // Check the file signature to determine the MIME type
-    if (hex.startsWith("FFD8FFE0")) {
-      return "image/jpeg";
-    } else if (hex.startsWith("89504E47")) {
-      return "image/png";
-    } else {
-      return "image/jpeg"; // Default to JPEG if the format is unknown
-    }
-  };
-
-  // Convert buffer data to base64-encoded string
-  const bufferToBase64 = (buffer) => {
-    let binary = "";
-    const bytes = new Uint8Array(buffer.data);
-    for (let i = 0; i < bytes.byteLength; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return btoa(binary);
-  };
-
-  const decodeBase64 = (base64String) => {
-    return atob(base64String);
-  };
-
-  // Render the image using base64 string
-  const base64Image = image && {
-    src: `${bufferToBase64(image)}`,
-  };
-
-  console.log("Base64 Image:", base64Image);
-
-  const decodedString = decodeBase64(base64Image.src);
-  console.log(decodedString);
+  
   useEffect(() => {
     const detectSpam = async () => {
       try {
@@ -165,7 +125,7 @@ const ReportModal = ({
               {image && (
                 <div style={{ textAlign: "center" }}>
                   <img
-                    src={decodedString}
+                    src={image}
                     alt="Report Image"
                     style={{
                       maxWidth: "100%",
