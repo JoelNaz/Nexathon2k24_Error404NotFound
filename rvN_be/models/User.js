@@ -137,7 +137,7 @@ const userReportSchema = new mongoose.Schema({
     default: 'pending',
   },
   image: {
-    type: Buffer, // Store binary image data
+    type: String, // Store binary image data
     required: false,
   },
   // Reference to the user who created the report
