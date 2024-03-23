@@ -16,9 +16,9 @@ const Header = () => {
     <div className="header">
       <h1 id="chat-header">
         {/* <img src={logo} alt="gemini" width={120} /> */}
-        <b style={{ marginLeft: 5 }}>Green AI</b>
+        <b style={{ marginLeft: 5 }}>Chat AI</b>
       </h1>
-      {/* <small>Experience Google’s largest and most capable AI model</small> */}
+      <small>Chat with Ai to know more about your local laws</small>
     </div>
   );
 };
