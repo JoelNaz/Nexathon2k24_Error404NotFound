@@ -180,6 +180,23 @@ router.get('/getReportsAssigned', async (req, res) => {
   });
   
 
+  router.get('/getuserreports/:userId', async (req, res) => {
+    const userId = req.params.userId;
+  
+    try {
+      // Find reports posted by the user with the provided user ID
+      const userReports = await UserReport.find({ createdBy: userId });
+  
+      if (!userReports) {
+        return res.status(404).json({ message: 'No reports found for this user' });
+      }
+  
+      res.status(200).json(userReports);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
 
 
 module.exports = router;
