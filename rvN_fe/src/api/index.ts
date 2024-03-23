@@ -2,7 +2,7 @@ import axios from 'axios'
 const baseURL = "http://localhost:5000/"
 const API = axios.create({ baseURL: baseURL})
 
-
+API.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
 export const Signin = (authData:{username:string,password:string}) => API.post('/auth/login', authData)
   .then(response => {
     const { token } = response.data;
