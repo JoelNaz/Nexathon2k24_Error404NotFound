@@ -8,7 +8,35 @@ import DepartmentCard from "@/components/DepartmentCard";
 
 const Homepage = () => {
   const navigate = useNavigate();
-  const options = ["traffic", "water", "fire", "police", "PWD"];
+  const options1 = ["traffic", "water", "fire", "police", "PWD"];
+  const options = [
+    {
+      title: "Traffic Department",
+      content: "This is the traffic department of the city.",
+      footer: "Contact",
+    },
+    {
+      title: "Water Department",
+      content: "This is the water department of the city.",
+      footer: "Contact",
+    },
+    {
+      title: "Fire Department",
+      content: "This is the fire department of the city.",
+      footer: "Contact",
+    },
+    {
+      title: "Police Department",
+      content: "This is the police department of the city.",
+      footer: "Contact",
+    },
+    {
+      title: "Public Works Department",
+      content: "This is the PWD department of the city.",
+      footer: "Contact",
+    },
+  ];
+
   const handleLogout = async () => {
     try {
       // Make a POST request to your backend logout endpoint
@@ -51,7 +79,7 @@ const Homepage = () => {
                   Seva Sankalp
                 </h1>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Post, track and know the Various greviences
+                  Post, track and know about the Various greviences around you
                 </p>
               </div>
               <Link
@@ -68,7 +96,7 @@ const Homepage = () => {
           <div className="flex justify-center items-center h-full mt-10">
             <div className="grid grid-cols-3 gap-20">
               {options.map((item, index) => (
-                <DepartmentCard key={index} {...item} />
+                <DepartmentCard key={index} title={item.title} content={item.content} footer={item.footer}/>
               ))}
             </div>
           </div>

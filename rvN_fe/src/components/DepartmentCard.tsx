@@ -6,18 +6,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-const DepartmentCard = () => {
+const DepartmentCard = ({title,content,footer}:{title:string,content:string,footer:string}) => {
   return (
     <Card className="w-[400px]">
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
+        <CardTitle>{title}</CardTitle>
         <CardDescription>Card Description</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>Card Content</p>
+        <p>{content}</p>
       </CardContent>
-      <CardFooter>
-        <p>Card Footer</p>
+      <CardFooter >
+        <p className="text-[#67666b]">{footer}</p>
       </CardFooter>
     </Card>
   );
