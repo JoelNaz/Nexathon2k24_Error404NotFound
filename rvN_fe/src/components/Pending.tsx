@@ -19,7 +19,6 @@ function Pending() {
 
   // Log image data for debugging
 
-
   return (
     <div className="flex flex-col gap-4">
       {pendingReports.map((item) => (
@@ -30,10 +29,9 @@ function Pending() {
           description={item.description}
           status={item.status}
           createdBy={item.createdBy}
+          department={item.department} // Added department field
           image={item.image} // Assuming imageURL is the property that holds the image URL
-          
         />
-        
       ))}
     </div>
   );

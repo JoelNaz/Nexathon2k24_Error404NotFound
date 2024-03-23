@@ -12,7 +12,7 @@ router.post('/postUserReports', async (req, res) => {
         const token = req.headers.authorization;
         const decoded = jwtDecode(token);
         console.log(token)
-        const { title, description, location,image } = req.body;
+        const { title, description, location, department ,image } = req.body;
 
         // Access the uploaded file via req.file
         //const image = req.file.buffer;
@@ -23,6 +23,7 @@ router.post('/postUserReports', async (req, res) => {
             description,
             location,
             image,
+            department,
             createdBy: decoded.userId,
         });
 
@@ -86,9 +87,10 @@ router.get('/reportstatus/:status', async (req, res) => {
 
 
 
-  router.post('/assignReport/:reportId', async (req, res) => {
+  router.post('/assignReport/:reportId/:department', async (req, res) => {
     try {
       const { reportId } = req.params;
+      const { department } = req.params;
       // const token = req.headers.authorization;
       // const decoded = jwtDecode(token);
 
@@ -99,9 +101,9 @@ router.get('/reportstatus/:status', async (req, res) => {
       }
 
       // Find the Authority document based on the admin parameter (assuming admin is the username)
-      const username = "siddhash"; // Define username variable with appropriate value
+       // Define username variable with appropriate value
 
-      const authority = await Authority.findOne({ username });
+      const authority = await Authority.findOne({ department });
 
       if (!authority) {
         return res.status(404).json({ message: 'Authority not found' });

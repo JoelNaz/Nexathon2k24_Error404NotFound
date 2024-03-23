@@ -320,7 +320,50 @@ router.post('/login', async (req, res) => {
   });
 
 
+  router.post('/authorityregister', async (req, res) => {
+    const {
+      username,
+      email,
+      password,
+      age,
+      department,
+      post,
+      publicid,
+      premiseid
+    } = req.body;
+  
+    try {
+      // Check if the username or email already exists
+      const existingAuthority = await Authority.findOne({ $or: [{ username }, { email }] });
+      if (existingAuthority) {
+        return res.status(400).json({ message: "Username or email already exists" });
+      }
 
+      const hashedPassword = await bcrypt.hash(password, 10);
+  
+      // Create a new authority instance
+      const newAuthority = new Authority({
+        username,
+        email,
+        password: hashedPassword, // Hash the password before saving to the database
+        age,
+        department,
+        post,
+        publicid,
+        premiseid,
+        reportsAssigned: [] // Initially no reports assigned
+      });
+  
+      // Save the new authority to the database
+      await newAuthority.save();
+  
+      // Return success response
+      return res.status(201).json({ message: "Authority registered successfully" });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  });
 
 
 
