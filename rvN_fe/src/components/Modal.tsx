@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "./ui/card";
 import Modal from "react-modal";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 import { AssignedReport, updayeStatus } from "@/api";
 import toast from "react-hot-toast";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const modalStyles = {
   overlay: {
@@ -27,11 +28,15 @@ const ReportModal = ({
   image, // Assuming imageURL is the property that holds the base64-encoded image URL
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [spam, setspam] = useState("");
   const navigate = useNavigate();
   console.log("Image data:", image);
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
+  const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+  const genAI = new GoogleGenerativeAI(API_KEY);
+  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
   const handleChat = () => {
     navigate(`/dash/chat/${createdBy}`);
@@ -106,7 +111,20 @@ const ReportModal = ({
 
   const decodedString = decodeBase64(base64Image.src);
   console.log(decodedString);
-
+  useEffect(() => {
+    const detectSpam = async () => {
+      try {
+        const inputText = `This is a grevience report for a muncipal corporation.Reply with only a yes or no if this is a potential spam or not.Classify it as not a spam only if it has detailed description of the grevience.Reply with a yes or a no.This is the Title and the description of a grevience report.  Title:${title} Description:${description}`;
+        const result = await model.generateContent(inputText);
+        const text = result.response.text();
+        console.log("gemini response", text);
+        setspam(text);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    detectSpam();
+  }, []);
   return (
     <Card className="flex p-6 min-w-[800px] relative rounded-xl overflow-hidden bg-white shadow-lg backdrop-blur-lg bg-opacity-40">
       <div className="flex justify-between w-full items-center">
@@ -156,6 +174,9 @@ const ReportModal = ({
                 </div>
               )}
               <p className="text-sm">{description}</p>
+              <div className="text-sm text-[#ea563c] font-bold">
+                {spam.toLowerCase() === "yes" ? "This report is a potential Spam" : "This report is not a potential Spam"}
+              </div>
             </div>
             <div>
               {status === "pending" ? (
