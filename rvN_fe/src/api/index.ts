@@ -38,6 +38,6 @@ export const Signin = (authData:{username:string,password:string}) => API.post('
   export const getReportByStatus=(status:"pending"|"accepted"|"rejected")=>API.get(`user/reportstatus/${status}`)
 
   export const getAssignedReports = ()=>API.get(`user/getReportsAssigned`)
-  export const AssignedReport = (reportID:string)=>API.post(`user/assignReport/${reportID}`)
+  export const AssignedReport = (reportID:string,department:string)=>API.post(`user/assignReport/${reportID}/${department}`)
   export const getAlert = ()=>API.get(`user/recent-user-reports`)
   export const getAllVisitors = ()=>API.get(`data/get-all-visitors`)

@@ -24,6 +24,7 @@ function Rejected() {
           status={item.status}
           createdBy={item.createdBy}
           image={item.image}
+          department={item.department}
         />
       ))}
     </div>

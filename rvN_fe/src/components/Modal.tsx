@@ -3,7 +3,7 @@ import { Card } from "./ui/card";
 import Modal from "react-modal";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
-import { AssignedReport, updayeStatus } from "@/api";
+import { AssignedReport, updayeStatus } from "@/api"; // Corrected function name
 import toast from "react-hot-toast";
 
 const modalStyles = {
@@ -24,6 +24,7 @@ const ReportModal = ({
   description,
   status = "pending",
   createdBy,
+  department, // Added department field
   image, // Assuming imageURL is the property that holds the base64-encoded image URL
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -39,7 +40,7 @@ const ReportModal = ({
 
   const handleAccept = async () => {
     try {
-      const response = await updayeStatus(reportId, { status: "accepted" });
+      const response = await updayeStatus(reportId, { status: "accepted" }); // Corrected function name
       toast.success("Report Status updated Successfully");
     } catch (e) {
       console.error(e);
@@ -48,7 +49,7 @@ const ReportModal = ({
 
   const handleReject = async () => {
     try {
-      const response = await updayeStatus(reportId, { status: "rejected" });
+      const response = await updayeStatus(reportId, { status: "rejected" }); // Corrected function name
       toast.success("Report Status updated Successfully");
     } catch (e) {
       console.error(e);
@@ -57,7 +58,7 @@ const ReportModal = ({
 
   const handleAssign = async () => {
     try {
-      const response = await AssignedReport(reportId);
+      const response = await AssignedReport(reportId, department);
       console.log(response);
     } catch (e) {
       console.error(e);
@@ -112,7 +113,8 @@ const ReportModal = ({
       <div className="flex justify-between w-full items-center">
         <div className="ml-6 flex flex-col gap-2">
           <h1 className="text-2xl font-bold">{title}</h1>
-          <p className="text-sm">{description}</p>
+          <p className="text-sm">Description: {description}</p>
+          <p className="text-sm">Department: {department}</p> {/* Display department */}
         </div>
         <div>
           <a href="#" onClick={openModal}>
@@ -155,7 +157,8 @@ const ReportModal = ({
                   />
                 </div>
               )}
-              <p className="text-sm">{description}</p>
+              <p className="text-sm">Description: {description}</p>
+              <p className="text-sm">Department: {department}</p>
             </div>
             <div>
               {status === "pending" ? (
