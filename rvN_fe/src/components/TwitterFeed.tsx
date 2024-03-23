@@ -8,7 +8,7 @@ const TwitterFeed: React.FC = () => {
       <div className="w-1/2 mb-4 hover:transform hover:scale-105 transition-transform">
         <TwitterTimelineEmbed
           sourceType="profile"
-          screenName="kaziranga_"
+          screenName="mybmc"
           options={{ height: 600 }}
           noScrollbar
           noHeader
