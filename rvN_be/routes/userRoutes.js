@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { UserReport, Authority } = require('../models/User');
+const { UserReport, Authority, User , Message } = require('../models/User');
 const { jwtDecode } = require('jwt-decode');
 
 const router = express.Router();
@@ -197,6 +197,39 @@ router.get('/getReportsAssigned', async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     }
   });
+
+
+  router.get('/messagesExists', async (req, res) => {
+    try {
+      // Extract the token from the request headers
+      const token = req.headers.authorization;
+      
+      // Decode the token to get the user's ID
+      const decoded = jwtDecode(token);
+    
+      // Find the User document based on the provided ID
+      const user = await User.findById(decoded.userId);
+  
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Use the User's ID as the receiverId
+      const receiverId = user._id;
+  
+      // Query the Message model to find messages for the provided receiverId
+      const messages = await Message.find({ receiver: receiverId });
+  
+      // Send the messages as a response
+      res.status(200).json(messages);
+      //console.log(messages)
+    } catch (error) {
+      console.error('Error retrieving messages:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
+
 
 
 module.exports = router;
