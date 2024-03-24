@@ -4,6 +4,7 @@ import TopBar from "../components/TopBar"
 import "@/components/Sidebar.css"
 import { useProfileStore } from "@/store/store"
 import { useEffect } from "react"
+// import bgdash from "@/assets/bggrounddash.jpeg"
 const Homepage = () => {
   const token =useProfileStore((state)=>state.token)
   const navigate = useNavigate()
