@@ -42,3 +42,4 @@ export const Signin = (authData:{username:string,password:string}) => API.post('
   export const getAlert = ()=>API.get(`user/recent-user-reports`)
   export const getAllVisitors = ()=>API.get(`data/get-all-visitors`)
   export const messagesExists = ()=>API.get(`user/messagesExists`)
+  export const getUserReports = (userId:string)=>API.get(`user/getuserreports/${userId}`)
