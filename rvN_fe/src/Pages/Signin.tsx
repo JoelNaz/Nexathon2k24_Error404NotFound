@@ -108,7 +108,7 @@ export default function SignInOne() {
         <div className="h-screen ">
           <img
             className="mx-auto h-full w-full rounded-md object-cover"
-            src="https://images.unsplash.com/photo-1692490157450-91083036b032?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fHw%3D"
+            src="https://plus.unsplash.com/premium_photo-1677228571702-36ad21bb8180?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""
           />
         </div>

@@ -11,7 +11,7 @@ const Navbar = () => {
     window.location.href="/"
   }
   return (
-    <nav className="bg-gradient-to-b from-[#f9f9f9] to-[#bcc4d3a7] p-8 b-0 h-24 text-[#353538d2]">
+    <nav className="bg-gradient-to-b from-[#f9f9f9] to-[#eeeeee] p-8 b-0 h-24 text-[#353538d2]">
       <div className="container mx-auto flex justify-between items-center">
         <div className=" font-bold flex gap-6 items-center justify-center">
           {/* <Link className="max-w-[60px]" to= "/"><img src={logo}/></Link> */}

@@ -1,7 +1,7 @@
 import ParkInsights from "@/components/ParkInsights";
 import { useState } from "react";
 const Charts = () => {
-  const [selectedPark, setSelectedPark] = useState("Kaziranga");
+  const [selectedPark, setSelectedPark] = useState("Mumbai Muncipal Corporation");
 
   const handleParkChange = (event) => {
     setSelectedPark(event.target.value);
@@ -23,9 +23,9 @@ const Charts = () => {
           value={selectedPark}
           onChange={handleParkChange}
         >
-          <option value="Kaziranga">Kaziranga National Park</option>
-          <option value="Gir">Gir National park</option>
-          <option value="Ranthambore">Ranthambore National park</option>
+          <option value="Kaziranga">traffic</option>
+          <option value="Gir">water</option>
+          <option value="Ranthambore">PWD</option>
           {/* Add more options as needed */}
         </select>
       </div>

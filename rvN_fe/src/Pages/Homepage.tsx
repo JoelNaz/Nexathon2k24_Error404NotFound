@@ -68,11 +68,11 @@ const Homepage = () => {
     <div>
       <Navbar />
       <div
-        className="w-full h-full bg-gradient-to-b from-[#1f2937] via-[#334154] to-[#73849c] bg-cover bg-center kenburns-top"
+        className="w-full h-full bg-gradient-to-b from-[#1f2937] via-[#334154] to-[#73849c] bg-cover bg-center"
         style={{
           backgroundImage:
-            'url("https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
-            opacity: "0.8",
+            'url("https://images.unsplash.com/photo-1532300481631-0bc14f3b7699?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            // opacity: "0.8",
         }}//"https://images.unsplash.com/photo-1494216928456-ae75fd96603d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)'
       >
         <section className="w-full py-12 md:py-24 ">
@@ -82,8 +82,8 @@ const Homepage = () => {
                 {/* <h1 className="text-[#67666b] text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
               Green Eye
             </h1> */}
-              <div className="text-shadow-pop-bl">
-                <h1 className=" text-black text-7xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none ">
+              <div className="">
+                <h1 className=" text-[#002d45] text-7xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none ">
                   Seva Sankalp
                 </h1>
               </div>
@@ -102,7 +102,7 @@ const Homepage = () => {
               </Link>
             </div>
           </div>
-          <div className="flex justify-center items-center h-full mt-10">
+          <div className="flex justify-center items-center h-full mt-48">
             <div className="grid grid-cols-3 gap-20">
               {options.map((item, index) => (
                 <DepartmentCard key={index} title={item.title} content={item.content} footer={item.footer} imageS={item.imageS}/>
