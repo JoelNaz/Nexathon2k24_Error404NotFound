@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 
-const MONGODB_URI = 'mongodb+srv://joelnazareth24:hI2rbWBBeyHsN5dI@cluster0.uivxlnm.mongodb.net/GrievanceSYS';
+const MONGODB_URI = 
 
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
