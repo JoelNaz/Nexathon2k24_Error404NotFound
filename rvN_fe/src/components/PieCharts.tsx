@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 const data = [
-  { name: 'Reported Cases', value: 400 },
+  //{ name: 'Reported Cases', value: 400 },
   { name: 'Pending', value: 300 },
-  { name: 'accepted', value: 300 },
+  { name: 'accepted', value: 400 },
   { name: 'rejected', value: 200 },
 ];
 
