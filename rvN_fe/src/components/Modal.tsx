@@ -89,7 +89,7 @@ const ReportModal = ({
   }, []);
   return (
     <Card className="flex p-6 min-w-[800px] relative rounded-xl overflow-hidden bg-white shadow-lg backdrop-blur-lg bg-opacity-40">
-      <div className="flex justify-between w-full items-center">
+      <div className="flex justify-between w-full items-center p-4">
         <div className="ml-6 flex flex-col gap-2">
           <h1 className="text-2xl font-bold">{title}</h1>
           <p className="text-sm">Description: {description}</p>
@@ -105,7 +105,7 @@ const ReportModal = ({
             onRequestClose={closeModal}
             style={modalStyles}
             contentLabel="Example Modal"
-            className="backdrop-blur-2xl bg-white bg-opacity-80 min-w-[600px] min-h-[500px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            className="backdrop-blur-2xl bg-white bg-opacity-80 min-w-[600px] min-h-[600px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           >
             <div style={{ position: "absolute", top: "10px", right: "10px" }}>
               <button
@@ -115,7 +115,7 @@ const ReportModal = ({
                 ✕
               </button>
             </div>
-            <div
+            <div className=""
               style={{
                 paddingBottom: "20px",
                 paddingTop: "10px",
@@ -123,6 +123,7 @@ const ReportModal = ({
               }}
             >
               <h2>{title}</h2>
+      
               {image && (
                 <div style={{ textAlign: "center" }}>
                   <img
