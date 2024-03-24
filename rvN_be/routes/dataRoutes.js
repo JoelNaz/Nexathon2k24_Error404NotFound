@@ -139,16 +139,34 @@ router.post('/sendmessages', async (req, res) => {
 });
 
 // Endpoint to get messages between two users
-router.get('/messages/:sender/:receiver', async (req, res) => {
+router.get('/messages/:userId/:receiverId', async (req, res) => {
   try {
-    const { sender, receiver } = req.params;
-    const messages = await Message.find({ $or: [{ sender, receiver }, { sender: receiver, receiver: sender }] });
+    const { userId, receiverId } = req.params;
+
+    // Find messages where sender is userId and receiver is receiverId
+    const messagesFromUser = await Message.find({
+      sender: userId,
+      receiver: receiverId,
+    }).sort({ timestamp: 1 });
+    console.log('Messages from user:', messagesFromUser);
+
+    // Find messages where sender is receiverId and receiver is userId
+    const messagesToUser = await Message.find({
+      sender: receiverId,
+      receiver: userId,
+    }).sort({ timestamp: 1 });
+    console.log('Messages to user:', messagesToUser);
+
+    // Combine the two arrays
+    const messages = [...messagesFromUser, ...messagesToUser];
+
     res.json(messages);
   } catch (error) {
     console.error(error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 
 

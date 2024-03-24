@@ -23,6 +23,7 @@ const ChatComponent = ({receiverId}) => {
     try {
       const response = await axios.get(`http://localhost:5000/data/messages/${userId}/${receiverId}`);
       setMessages(response.data);
+      console.log(response.data)
     } catch (error) {
       console.error(error);
     }
@@ -41,11 +42,15 @@ const ChatComponent = ({receiverId}) => {
 
   return (
     <div>
-      <ul>
-        {messages.map((msg, index) => (
-          <li key={index}>{` ${msg.content}`}</li>
-        ))}
-      </ul>
+      {messages.length === 0 ? (
+        <p>Loading...</p>
+      ) : (
+        <ul>
+          {messages.map((msg, index) => (
+            <li key={index}>{msg.content}</li>
+          ))}
+        </ul>
+      )}
       <input
         type="text"
         value={messageInput}
