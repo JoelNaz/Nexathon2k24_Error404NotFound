@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 const data = [
-  { name: 'Reported Cases', value: 400 },
-  { name: 'Pending', value: 300 },
-  { name: 'accepted', value: 300 },
-  { name: 'rejected', value: 200 },
+  // { name: 'Reported Cases', value: 400 },
+  { name: 'Pending', value: 290 },
+  { name: 'accepted', value: 400 },
+  { name: 'rejected', value: 300 },
 ];
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];

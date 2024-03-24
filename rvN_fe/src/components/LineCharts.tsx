@@ -1,75 +1,84 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
   {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
+    name: 'Jan',
+    'Traffic Department': 4000,
+    'Water Department': 2400,
+    'Fire Department': 3200,
+    'Police Department': 1400,
+    'PWD Department': 2300
   },
   {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
+    name: 'Feb',
+    'Traffic Department': 3000,
+    'Water Department': 1398,
+    'Fire Department': 2800,
+    'Police Department': 980,
+    'PWD Department': 4000
   },
   {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
+    name: 'Mar',
+    'Traffic Department': 2000,
+    'Water Department': 3000,
+    'Fire Department': 1800,
+    'Police Department': 3900,
+    'PWD Department': 3100
   },
   {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
+    name: 'Apr',
+    'Traffic Department': 2780,
+    'Water Department': 3908,
+    'Fire Department': 2000,
+    'Police Department': 5000,
+    'PWD Department': 1800
   },
   {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
+    name: 'May',
+    'Traffic Department': 1890,
+    'Water Department': 9000,
+    'Fire Department': 4000,
+    'Police Department': 1000,
+    'PWD Department': 1500
   },
   {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
+    name: 'Jun',
+    'Traffic Department': 2390,
+    'Water Department': 3800,
+    'Fire Department': 2800,
+    'Police Department': 3400,
+    'PWD Department': 3200
+  }
 ];
 
+const LineCharts = () => {
+  const departments = Object.keys(data[0]).filter(key => key !== 'name');
 
-  const LineCharts = () => {
-    return (
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          width={1000}
-          height={300}
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" tick={{ fill: 'white' }} />
-          <YAxis tick={{ fill: 'white' }} />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-        </LineChart>
-      </ResponsiveContainer>
-    );
-  }
+  return (
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart
+        width={1000}
+        height={300}
+        data={data}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" tick={{ fill: 'white' }} />
+        <YAxis tick={{ fill: 'white' }} />
+        <Tooltip />
+        <Legend />
+        {departments.map(department => (
+          <Line key={department} type="monotone" dataKey={department} stroke={`#${Math.floor(Math.random()*16777215).toString(16)}`} name={department} />
+        ))}
+      </LineChart>
+    </ResponsiveContainer>
+  );
+};
+
 export default LineCharts;

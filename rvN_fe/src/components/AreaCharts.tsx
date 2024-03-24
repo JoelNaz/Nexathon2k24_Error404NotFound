@@ -1,58 +1,57 @@
-import {AreaChart, Area, ResponsiveContainer, YAxis, XAxis, CartesianGrid, Tooltip, Legend} from "recharts"
+import React from 'react';
+import { AreaChart, Area, ResponsiveContainer, YAxis, XAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const productdata = [
   {
     name: 'Jan',
-    product1: 4000,
-    product2: 2400,
+    thisYear: 4000, // This year's data
+    previousYear: 2400, // Previous year's data
   },
   {
     name: 'Feb',
-    product1: 3000,
-    product2: 2210,
+    thisYear: 3000,
+    previousYear: 2210,
   },
   {
     name: 'Mar',
-    product1: 2000,
-    product2: 2290,
+    thisYear: 2000,
+    previousYear: 2290,
   },
   {
     name: 'Apr',
-    product1: 2780,
-    product2: 2000,
+    thisYear: 2780,
+    previousYear: 2000,
   },
   {
     name: 'May',
-    product1: 1890,
-    product2: 2181,
+    thisYear: 1890,
+    previousYear: 2181,
   },
   {
     name: 'Jun',
-    product1: 2390,
-    product2: 2500,
+    thisYear: 2390,
+    previousYear: 2500,
   },
 ];
 
 const AreaCharts = ({data}) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
-
-       <AreaChart
+      <AreaChart
         width={400}
         height={300}
-        data={data}
+        data={productdata}
         margin={{ right: 30 }}
       >
-         <YAxis tick={{ fill: 'white' }}  />
-        <XAxis dataKey="year" tick={{ fill: 'white' }} />
+        <YAxis tick={{ fill: 'white' }} />
+        <XAxis dataKey="name" tick={{ fill: 'white' }} />
         <CartesianGrid strokeDasharray="5 5" />
-
-        {/* <Tooltip content={<CustomTooltip />} /> */}
+        <Tooltip />
         <Legend />
 
         <Area
           type="monotone"
-          dataKey="2023"
+          dataKey="thisYear" // Use thisYear for the current year's data
           stroke="#2563eb"
           fill="#3b82f6"
           stackId="1"
@@ -60,15 +59,14 @@ const AreaCharts = ({data}) => {
 
         <Area
           type="monotone"
-          dataKey="2024"
+          dataKey="previousYear" // Use previousYear for the previous year's data
           stroke="#7c3aed"
           fill="#8b5cf6"
           stackId="1"
         />
       </AreaChart>
     </ResponsiveContainer>
-    
-  )
-}
+  );
+};
 
-export default AreaCharts
+export default AreaCharts;
