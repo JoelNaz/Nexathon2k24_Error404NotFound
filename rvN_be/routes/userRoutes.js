@@ -2,42 +2,87 @@ const express = require('express');
 const multer = require('multer');
 const { UserReport, Authority, User , Message } = require('../models/User');
 const { jwtDecode } = require('jwt-decode');
+const { SentimentAnalyzer, PorterStemmer, WordTokenizer } = require('natural');
+
+// Initialize the sentiment analyzer for English
+const analyzer = new SentimentAnalyzer('English', PorterStemmer, 'afinn');
+
+// Import the 'natural' package
+const natural = require('natural');
+
+// Use PorterStemmer from 'natural'
+const stemmer = natural.PorterStemmer;
 
 const router = express.Router();
 
 // Multer configuration for handling file uploads
 
+
+function analyzeSentiment(title, description) {
+  // Tokenize and stem the text for analysis
+  const tokenizer = new natural.WordTokenizer();
+  const titleTokens = tokenizer.tokenize(title);
+  const descriptionTokens = tokenizer.tokenize(description);
+  const titleStems = titleTokens.map(token => stemmer.stem(token));
+  const descriptionStems = descriptionTokens.map(token => stemmer.stem(token));
+
+  // Calculate sentiment scores for title and description
+  const titleScore = analyzer.getSentiment(titleStems);
+  const descriptionScore = analyzer.getSentiment(descriptionStems);
+
+  // Combine scores or use other criteria to determine priority
+  const overallScore = (titleScore + descriptionScore) / 2;
+  let priority;
+
+  // Assign priority based on sentiment score
+  if (overallScore < 0) {
+    priority = 'Medium';
+  } else if (overallScore < 2) {
+    priority = 'low';
+  } else {
+    priority = 'High';
+  }
+
+  return priority;
+}
+
+
+
+
+
+
+
 router.post('/postUserReports', async (req, res) => {
-    try {
-        const token = req.headers.authorization;
-        const decoded = jwtDecode(token);
-        console.log(token)
-        const { title, description, location, department ,image } = req.body;
+  try {
+      const token = req.headers.authorization;
+      const decoded = jwtDecode(token);
+      const { title, description, location, department, image } = req.body;
 
-        // Access the uploaded file via req.file
-        //const image = req.file.buffer;
+      // Perform sentiment analysis to determine priority
+      const priority = analyzeSentiment(title, description);
 
-        // Create a new UserReport instance
-        const newUserReport = new UserReport({
-            title,
-            description,
-            location,
-            image,
-            department,
-            createdBy: decoded.userId,
-        });
+      // Create a new UserReport instance
+      const newUserReport = new UserReport({
+          title,
+          description,
+          location,
+          image,
+          department,
+          priority,
+          createdBy: decoded.userId,
+      });
 
-        // Save the user report to the database
-        await newUserReport.save();
+      // Save the user report to the database
+      await newUserReport.save();
+      console.log(newUserReport)
 
-        res.status(201).json({ message: 'User report created successfully' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
+      res.status(201).json({ message: 'User report created successfully' });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
 });
-
-
+//
 router.get('/reportstatus/:status', async (req, res) => {
     try {
   
