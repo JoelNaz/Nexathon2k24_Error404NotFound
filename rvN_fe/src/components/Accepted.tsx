@@ -5,7 +5,6 @@ import Modal from "./Modal";
 
 function Rejected() {
   const [acceptedReports, setAcceptedReports] = useState([]);
-
   useEffect(() => {
     const getPendingReport = async () => {
       try {
@@ -26,6 +25,7 @@ function Rejected() {
           reportId={item._id}
           image={item.image}
           department={item.department}
+          priority={item.priority}
         />
       ))}
     </div>

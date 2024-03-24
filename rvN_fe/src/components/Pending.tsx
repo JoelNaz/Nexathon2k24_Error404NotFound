@@ -31,6 +31,7 @@ function Pending() {
           createdBy={item.createdBy}
           department={item.department} // Added department field
           image={item.image} // Assuming imageURL is the property that holds the image URL
+          priority={item.priority}
         />
       ))}
     </div>

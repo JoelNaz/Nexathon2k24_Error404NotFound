@@ -26,7 +26,8 @@ const ReportModal = ({
   status = "pending",
   createdBy,
   department, // Added department field
-  image, // Assuming imageURL is the property that holds the base64-encoded image URL
+  image,
+  priority // Assuming imageURL is the property that holds the base64-encoded image URL
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [spam, setspam] = useState("");
@@ -137,6 +138,7 @@ const ReportModal = ({
               )}
               <p className="text-sm">{description}</p>
               <p className="text-sm">Department: {department}</p>
+              <div className="flex text-sm items-center mt-5 gap-2"><div className=" font-bold ">Calculated Priority:</div><div>{priority}</div></div>
               <div className="text-sm text-[#ea563c] font-bold">
                 {spam.toLowerCase() === "yes" ? "This report is a potential Spam" : "This report is not a potential Spam"}
               </div>
