@@ -1,7 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const {YearlyData,endangeredSpecies,Visitor} = require('../models/periodic');
-const {Message} = require('../models/User');
+const { YearlyData, endangeredSpecies, Visitor } = require('../models/periodic');
+const { Message, UserReport, User } = require('../models/User');
+const { SentimentAnalyzer, PorterStemmer, WordTokenizer } = require('natural');
+
+// Initialize the sentiment analyzer for English
+const analyzer = new SentimentAnalyzer('English', PorterStemmer, 'afinn');
+
+// Import the 'natural' package
+const natural = require('natural');
+
+// Use PorterStemmer from 'natural'
+const stemmer = natural.PorterStemmer;
 
 // GET route to fetch yearly data details
 router.get('/getyearlydata/:parkName', async (req, res) => {
@@ -166,6 +176,59 @@ router.get('/messages/:userId/:receiverId', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+
+
+
+router.get('/priority-analysis', async (req, res) => {
+  try {
+    // Retrieve all user reports from the database
+    const userReports = await UserReport.find();
+
+    // Perform sentiment analysis on each user report and determine priority
+    const priorities = userReports.map(report => {
+      const priority = analyzeSentiment(report.title, report.description);
+      return { _id: report._id, priority };
+    });
+
+    res.json(priorities);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Function to analyze sentiment of title and description
+function analyzeSentiment(title, description) {
+  // Tokenize and stem the text for analysis
+  const tokenizer = new natural.WordTokenizer();
+  const titleTokens = tokenizer.tokenize(title);
+  const descriptionTokens = tokenizer.tokenize(description);
+  const titleStems = titleTokens.map(token => stemmer.stem(token));
+  const descriptionStems = descriptionTokens.map(token => stemmer.stem(token));
+
+  // Calculate sentiment scores for title and description
+  const titleScore = analyzer.getSentiment(titleStems);
+  const descriptionScore = analyzer.getSentiment(descriptionStems);
+
+  // Combine scores or use other criteria to determine priority
+  const overallScore = (titleScore + descriptionScore) / 2;
+  let priority;
+
+  // Assign priority based on sentiment score
+  if (overallScore < 0) {
+    priority = 'Medium';
+  } else if (overallScore < 2) {
+    priority = 'low';
+  } else {
+    priority = 'High';
+  }
+
+  return priority;
+}
+
+
+
 
 
 
