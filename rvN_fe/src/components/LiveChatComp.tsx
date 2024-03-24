@@ -41,7 +41,9 @@ const ChatComponent = ({receiverId}) => {
   };
 
   return (
-    <div>
+    <div className='flex items-center justify-center h-screen'>
+      <div className='bg-white p-10 pb-0 rounded shadow-lg w-2/4 h-3/4'> 
+      <div className="overflow-y-auto h-3/4 mb-4 border-4 border-double p-4 border-slate-700 text-black">
       {messages.length === 0 ? (
         <p>Loading...</p>
       ) : (
@@ -51,13 +53,17 @@ const ChatComponent = ({receiverId}) => {
           ))}
         </ul>
       )}
+      </div>
+      <div className="flex items-center mt-10">
       <input
         type="text"
         value={messageInput}
         onChange={(e) => setMessageInput(e.target.value)}
-        className='text-black'
+        className='border-2 border-gray-300 px-4 py-2 mr-2 w-full rounded-md focus:outline-none focus:border-blue-500 text-black'
       />
-      <button onClick={sendMessage}>Send</button>
+      <button onClick={sendMessage} className='bg-green-500 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-green hover:bg-green-600'>Send</button>
+      </div>
+      </div>
     </div>
   );
 };

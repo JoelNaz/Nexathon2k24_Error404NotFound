@@ -90,7 +90,7 @@ const ChatComp = () => {
   };
 
   return (
-    <div className={`chat-window rounded-md`}>
+    <div className={`chat-window rounded-md flex items-center justify-center h-screen`}>
       <Header />
       <div className="chat-container overflow-y-auto scrollbar-hide"  ref={chatContainerRef}>
         {messages.map((message, index) => (
