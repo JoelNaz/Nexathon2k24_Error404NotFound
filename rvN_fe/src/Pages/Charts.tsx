@@ -14,7 +14,7 @@ const Charts = () => {
           htmlFor="parkSelect"
           className="block text-sm font-medium text-gray-500"
         >
-          Select Park:
+          Select Department:
         </label>
         <select
           id="parkSelect"
@@ -23,9 +23,9 @@ const Charts = () => {
           value={selectedPark}
           onChange={handleParkChange}
         >
-          <option value="Kaziranga">traffic</option>
-          <option value="Gir">water</option>
-          <option value="Ranthambore">PWD</option>
+          <option value="Traffic Department">traffic</option>
+          <option value="Water Department">water</option>
+          <option value="PWD Department">PWD</option>
           {/* Add more options as needed */}
         </select>
       </div>

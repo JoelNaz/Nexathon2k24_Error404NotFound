@@ -1,6 +1,6 @@
 import {AreaChart, Area, ResponsiveContainer, YAxis, XAxis, CartesianGrid, Tooltip, Legend} from "recharts"
 
-const productSales = [
+const productdata = [
   {
     name: 'Jan',
     product1: 4000,
@@ -44,7 +44,7 @@ const AreaCharts = ({data}) => {
         margin={{ right: 30 }}
       >
          <YAxis tick={{ fill: 'white' }}  />
-        <XAxis dataKey="year"tick={{ fill: 'white' }} />
+        <XAxis dataKey="year" tick={{ fill: 'white' }} />
         <CartesianGrid strokeDasharray="5 5" />
 
         {/* <Tooltip content={<CustomTooltip />} /> */}
@@ -52,7 +52,7 @@ const AreaCharts = ({data}) => {
 
         <Area
           type="monotone"
-          dataKey="flora"
+          dataKey="2023"
           stroke="#2563eb"
           fill="#3b82f6"
           stackId="1"
@@ -60,7 +60,7 @@ const AreaCharts = ({data}) => {
 
         <Area
           type="monotone"
-          dataKey="fauna"
+          dataKey="2024"
           stroke="#7c3aed"
           fill="#8b5cf6"
           stackId="1"
