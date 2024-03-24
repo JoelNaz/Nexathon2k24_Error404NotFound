@@ -15,7 +15,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center">
         <div className=" font-bold flex gap-6 items-center justify-center">
           <Link className="max-w-[80px]" to= "/"><img src={logo}/></Link>
-          <div><a href="https://wii.gov.in/rti#maincontent" className=" hover:text-slate-400">Laws</a></div>
+          <div><a href="https://lj.maharashtra.gov.in/Site/Upload/Acts/H-4094%20The%20Mumbai%20Municipal%20Corporation%20Act.pdf" className=" hover:text-slate-400">Laws</a></div>
           <div><a href="#" className=" hover:text-slate-400">About</a></div>
         </div>
         <div><Input className="rounded-full w-[400px] " placeholder="Search"/></div>
